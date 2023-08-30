@@ -27,8 +27,6 @@ class Parse extends Command
      */
     public function handle()
     {
-        //(new CurrencyRateService())->callApi();
-
-        (new CurrencyRateController())->conversion(3,14);
+        (new CurrencyRateService())->callApi();
     }
 }
