@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Http\Controllers\CurrencyRateController;
+use App\Service\CurrencyRateService;
 use Illuminate\Console\Command;
 
 class Parse extends Command
@@ -12,7 +13,7 @@ class Parse extends Command
      *
      * @var string
      */
-    protected $signature = 'cb:parse';
+    protected $signature = 'cb:parser';
 
     /**
      * The console command description.
@@ -26,8 +27,8 @@ class Parse extends Command
      */
     public function handle()
     {
-        //(new CurrencyRateService)->callApi();
+        //(new CurrencyRateService())->callApi();
 
-        (new CurrencyRateController)->conversion(1,2);
+        (new CurrencyRateController())->conversion(3,14);
     }
 }

@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 Route::get('/get_country_rates/{rate_country1}/{rate_country2}', [CurrencyRateController::class, 'conversion']);
 
-Route::get('/rate/{id}', [CurrencyRateController::class, 'show']);
+Route::get('exchange_rates/{id}', [CurrencyRateController::class, 'getExchangeRates']);
