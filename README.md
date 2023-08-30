@@ -2,7 +2,7 @@
 
 cp .env.example .env
 
-docker-compose up -d
+./vendor/bin/sail up
 
 docker-compose exec laravel.test php artisan migrate 
 
@@ -10,17 +10,15 @@ docker-compose exec laravel.test php artisan migrate
 
 Для парсинга с сайта ЦБ я написал команду:
 
-docker-compose exec laravel.test php artisan cb:parse 
+docker-compose exec laravel.test php artisan cb:parser
 
 Основная идея такова: Команда парсит данные из xml файла второго источника,
-далее доступно два роута(я их не успел протестить), первый роут показывает курс одной валюты к другой.
+далее доступно два роута:
 
-Логика:
+1) /get_country_rates/{конвертируемая валюта}/{валюта для конвертации}
+   p.s. в фигурных скобках ставим id(1-40)
+   p.s.s не смог подкорректировать ввод, в идеале на сайте выбираем конвертируемую валюту, далее выбираем валюту для конвертации
 
-1)Route::get('/get_country_rates/{rate_country1}/{rate_country2}', [CurrencyRateController::class, 'conversion']);
-
-В этом роуте сначала выбирается валюта, далее выбирается валюта, в которую конвертируется первая.
-
-2)Route::get('/rate/{id}', [CurrencyRateController::class, 'show']);
-
-это тестовый роут в котором показаны курсы валют к рублю.
+2) exchange_rates/{id}
+   В этом роуте мы выбираем курс рубля к определенной валюте, далее эта валюта записывается в переменную и далее уже смотрим курс этой валюты к остальным.
+   p.s. реализация немного хромает, в идеале на сайте будет валюта, выбирая ее появляется список, где данная валюта сконвертирована по отношению к другим. 
