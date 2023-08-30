@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CurrencyRateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/get_country_rates/{rate_country1}/{rate_country2}', [CurrencyRateController::class, 'conversion']);
+
+Route::get('/rate/{id}', [CurrencyRateController::class, 'show']);

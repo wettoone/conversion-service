@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'central_bank' => [
+        'url' => env('CENTRAL_BANK_URL', 'http://www.cbr.ru/scripts/XML_daily.asp')
+    ]
+
 ];
